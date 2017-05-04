@@ -44,12 +44,12 @@ module Lecture =
 module Lechia =
   let A = [| [|0.35; 0.3; 0.35|]; [|0.2; 0.2; 0.6|]; [|0.36; 0.23; 0.41|]|]
   let B = [| [|0.62; 0.38|]; [|0.625; 0.375|]; [|0.37; 0.63|]|]
-  let pi = [|0.57;0.29;0.17|]
-  let observations = [|0; 1; 0; 0; 1; 0; 1|]
   let mapping = dict [(0, "W"); (1, "D"); (2, "L")]
   
   [<Tests>]
   let calculationTests =
+    let pi = [|0.57;0.29;0.17|]
+    let observations = [|0; 1; 0; 0; 1; 0; 1|]
     let result = (pi, A, B, observations) |> ForwardBackward.calculate
 
     testList "Forward Backward from exercise for calulations" [
@@ -91,10 +91,45 @@ module Lechia =
 
   [<Tests>]
   let predictionTests =
+    let pi = [|0.57;0.29;0.17|]
+    let observations = [|0; 1; 0; 0; 1; 0; 1|]
     let prediction = (pi, A, B, observations, mapping) |> ForwardBackward.predict
 
     testList "Forward Backward from exercise for prediction" [
       testCase "for prediction" <| fun _ ->
         Expect.equal prediction "WLWWLWL" "prediction should be equal to WLWWLWL"
+    ]
+
+  [<Tests>]
+  let predictionTests2016 =
+    let pi = [|0.4;0.4;0.2|]
+    let observations = [|1; 0; 1; 1; 0; 0; 1|]
+    let prediction = (pi, A, B, observations, mapping) |> ForwardBackward.predict
+
+    testList "Forward Backward from exercise for prediction" [
+      testCase "for prediction for 2016" <| fun _ ->
+        Expect.equal prediction "WWLLWWL" "prediction should be equal to WWLLWWL" // in fact was WWLDWWL 6/7
+    ]
+
+  [<Tests>]
+  let predictionTests2015 =
+    let pi = [|0.25;0.5;0.25|]
+    let observations = [|1; 0; 1; 0; 1; 0; 1|]
+    let prediction = (pi, A, B, observations, mapping) |> ForwardBackward.predict
+
+    testList "Forward Backward from exercise for prediction" [
+      testCase "for prediction for 2015" <| fun _ ->
+        Expect.equal prediction "DLLWLWL" "prediction should be equal to DLLWLWL" // in fact was WDWLLDL 2/7
+    ]
+
+  [<Tests>]
+  let predictionTests2014 =
+    let pi = [|0.33;0.33;0.33|]
+    let observations = [|1; 0; 1; 0; 1; 0; 1|]
+    let prediction = (pi, A, B, observations, mapping) |> ForwardBackward.predict
+
+    testList "Forward Backward from exercise for prediction" [
+      testCase "for prediction for 2014" <| fun _ ->
+        Expect.equal prediction "LWLWLWL" "prediction should be equal to LWLWLWL" // in fact was WLWWDDW 1/7
     ]
 
