@@ -32,41 +32,41 @@ let baseTests =
 [<Tests>]
 let lechiaTests =
   let A = [| [|0.35; 0.3; 0.35|]; [|0.2; 0.2; 0.6|]; [|0.36; 0.23; 0.41|]|]
-  let B = [| [|0.4; 0.26|]; [|0.3; 0.19|]; [|0.3; 0.55|]|]
-  let pi = [|0.33;0.33;0.33|]
+  let B = [| [|0.62; 0.38|]; [|0.625; 0.375|]; [|0.37; 0.63|]|]
+  let pi = [|0.57;0.29;0.17|]
   let observations = [|0; 1; 0; 0; 1; 0; 1|]
   let result = (pi, A, B, observations) |> ForwardBackward.calculate
 
   testList "Forward Backward from exercise" [
     testCase "for first match" <| fun _ ->
-      Expect.floatClose Accuracy.high result.[0, 0] 0.3662587179 "win expectation should be close to 0.3662687"
-      Expect.floatClose Accuracy.high result.[0, 1] 0.3403724666 "draw expectation should be close to 0.34037"
-      Expect.floatClose Accuracy.high result.[0, 2] 0.2933688155 "lose expectation should be close to 0.2933688"
+      Expect.floatClose Accuracy.high result.[0, 0] 0.5646381316 "win expectation should be close to 0.56"
+      Expect.floatClose Accuracy.high result.[0, 1] 0.3309213701 "draw expectation should be close to 0.33"
+      Expect.floatClose Accuracy.high result.[0, 2] 0.1044404983 "lose expectation should be close to 0.1"
 
     testCase "for second match" <| fun _ ->
-      Expect.floatClose Accuracy.high result.[1, 0] 0.2162136539 "win expectation should be close to 0.21621"
-      Expect.floatClose Accuracy.high result.[1, 1] 0.1222543195 "draw expectation should be close to 0.12225"
-      Expect.floatClose Accuracy.high result.[1, 2] 0.6615320266 "lose expectation should be close to 0.66153"
+      Expect.floatClose Accuracy.high result.[1, 0] 0.2473306564 "win expectation should be close to 0.25"
+      Expect.floatClose Accuracy.high result.[1, 1] 0.1851950237 "draw expectation should be close to 0.19"
+      Expect.floatClose Accuracy.high result.[1, 2] 0.5674743198 "lose expectation should be close to 0.57"
 
     testCase "for third match" <| fun _ ->
-      Expect.floatClose Accuracy.high result.[2, 0] 0.4097649843 "win expectation should be close to 0.40976"
-      Expect.floatClose Accuracy.high result.[2, 1] 0.209452514 "draw expectation should be close to 0.20945"
-      Expect.floatClose Accuracy.high result.[2, 2] 0.3807825018 "lose expectation should be close to 0.38078"
+      Expect.floatClose Accuracy.high result.[2, 0] 0.4126717886 "win expectation should be close to 0.41"
+      Expect.floatClose Accuracy.high result.[2, 1] 0.2706488666 "draw expectation should be close to 0.27"
+      Expect.floatClose Accuracy.high result.[2, 2] 0.3166793448 "lose expectation should be close to 0.32"
 
     testCase "for fourth match" <| fun _ ->
-      Expect.floatClose Accuracy.high result.[3, 0] 0.3583581489 "win expectation should be close to 0.358358"
-      Expect.floatClose Accuracy.high result.[3, 1] 0.260368854 "draw expectation should be close to 0.260"
-      Expect.floatClose Accuracy.high result.[3, 2] 0.3812729971 "lose expectation should be close to 0.381"
+      Expect.floatClose Accuracy.high result.[3, 0] 0.3558127401 "win expectation should be close to 0.36"
+      Expect.floatClose Accuracy.high result.[3, 1] 0.3287579673 "draw expectation should be close to 0.33"
+      Expect.floatClose Accuracy.high result.[3, 2] 0.3154292926 "lose expectation should be close to 0.32"
 
     testCase "for fifth match" <| fun _ ->
-      Expect.floatClose Accuracy.high result.[4, 0] 0.2289091441 "win expectation should be close to 0.2289"
-      Expect.floatClose Accuracy.high result.[4, 1] 0.1247629533 "draw expectation should be close to 0.12576"
-      Expect.floatClose Accuracy.high result.[4, 2] 0.6463279026 "lose expectation should be close to 0.6463"
+      Expect.floatClose Accuracy.high result.[4, 0] 0.2493814096 "win expectation should be close to 0.25"
+      Expect.floatClose Accuracy.high result.[4, 1] 0.1737614537 "draw expectation should be close to 0.17"
+      Expect.floatClose Accuracy.high result.[4, 2] 0.5768571366 "lose expectation should be close to 0.58"
 
     testCase "for sixth match" <| fun _ ->
-      Expect.floatClose Accuracy.high result.[5, 0] 0.3755874055 "win expectation should be close to 0.375587"
-      Expect.floatClose Accuracy.high result.[5, 1] 0.2494614647 "draw expectation should be close to 0.24946"
-      Expect.floatClose Accuracy.high result.[5, 2] 0.3749511297 "lose expectation should be close to 0.37495"
+      Expect.floatClose Accuracy.high result.[5, 0] 0.3766066854 "win expectation should be close to 0.38"
+      Expect.floatClose Accuracy.high result.[5, 1] 0.3173017846 "draw expectation should be close to 0.32"
+      Expect.floatClose Accuracy.high result.[5, 2] 0.3060915299 "lose expectation should be close to 0.31"
     
     testCase "for seventh match" <| fun _ ->
       Expect.floatClose Accuracy.high result.[6, 0] 0.0 "win expectation should be close to 0.0"
