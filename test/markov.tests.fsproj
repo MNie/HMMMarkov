@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <Compile Include="ForwardBackwardTests.fs" />
+    <Compile Include="ViterbiTests.fs" />
     <Compile Include="Main.fs" />
   </ItemGroup>
 

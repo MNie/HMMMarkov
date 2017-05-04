@@ -1,5 +1,6 @@
 namespace markov.core
     open System
+    open System.Collections.Generic
 
     module ForwardBackward =
         let private alfaPass(pi: double[], A: double[][], B: double[][], observations: int[]) =
@@ -51,6 +52,7 @@ namespace markov.core
                     for j in 0..A.Length - 1 do
                         let localGamma = (alfa.[t, i] * A.[i].[j] * B.[j].[observations.[t + 1]] * beta.[t + 1, j])/denom
                         gamma.[t, i] <- gamma.[t, i] + localGamma
+            gamma.[observations.Length - 1, 0..] <- alfa.[observations.Length - 1, 0..]
             gamma
 
         let calculate(pi: double[], A: double[][], B: double[][], observations: int[]) =
@@ -58,5 +60,22 @@ namespace markov.core
             let c, alfa = alfaPass parameters
             let beta = c |> betaPass(parameters)
             (alfa, beta) |> gamma(parameters)
+
+        let private getIndexOfMax(tab: double[]) =
+            tab
+            |> Array.mapi (fun index elem -> (index, elem))
+            |> Array.maxBy snd
+            |> fst
+
+        let predict(pi: double[], A: double[][], B: double[][], observations: int[], mapping: IDictionary<int, string>) =
+            let calculations = (pi, A, B, observations) |> calculate
+            let mappedCalculations = 
+                seq { for i in 0..observations.Length - 1 do
+                    yield mapping.[getIndexOfMax(calculations.[i, 0..])]
+                }
+            mappedCalculations |> String.Concat
+
+
+        
         
         
