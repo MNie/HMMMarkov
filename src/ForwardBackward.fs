@@ -25,7 +25,7 @@ namespace markov.core
                     alfa.[t, i] <- c.[t] * alfa.[t, i]
             (c, alfa)
 
-        let betaPass (pi: double[], A: double[][], B: double[][], observations: int[]) (c: double[]) =
+        let private betaPass (pi: double[], A: double[][], B: double[][], observations: int[]) (c: double[]) =
             let beta = Array2D.create observations.Length A.Length 0.0
             let lastT = observations.Length - 1
             for i in 0..A.Length - 1 do
@@ -38,13 +38,15 @@ namespace markov.core
                     beta.[t, i] <- c.[t] * beta.[t, i]
             beta
 
-        let gamma (pi: double[], A: double[][], B: double[][], observations: int[]) (alfa: double[,], beta: double[,]) =
+        let private gamma (pi: double[], A: double[][], B: double[][], observations: int[]) (alfa: double[,], beta: double[,]) =
             let gamma = Array2D.create observations.Length A.Length 0.0
             for t in 0..observations.Length - 2 do
-                let mutable denom = 0.0
-                for i in 0..A.Length - 1 do
-                    for j in 0..A.Length - 1 do
-                        denom <- denom + alfa.[t, i] * A.[i].[j] * B.[j].[observations.[t + 1]] * beta.[t + 1, j]
+                let denom = 
+                    [0..A.Length - 1]
+                    |> List.sumBy (fun i -> 
+                            [0..A.Length - 1]
+                            |> List.sumBy (fun j -> alfa.[t, i] * A.[i].[j] * B.[j].[observations.[t + 1]] * beta.[t + 1, j])
+                        )
                 for i in 0..A.Length - 1 do
                     for j in 0..A.Length - 1 do
                         let localGamma = (alfa.[t, i] * A.[i].[j] * B.[j].[observations.[t + 1]] * beta.[t + 1, j])/denom
