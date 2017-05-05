@@ -38,7 +38,7 @@ module Lecture =
     
     testList "Forward Backward from Lecture for prediction" [
       testCase "for prediction" <| fun _ ->
-        Expect.equal prediction "CHCH" "prediction should be equal to CHHC"
+        Expect.equal prediction "CHCH" "prediction should be equal to CHCH"
     ]
 
 module Lechia =
