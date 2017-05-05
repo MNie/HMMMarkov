@@ -1,0 +1,126 @@
+#Szczegółowo
+	Jagiellonia:
+	D W
+	W W
+	W R
+	D R
+	W P
+	W W
+	D W
+	W W
+	D W
+
+	Meczy: 9
+	D - 3W 1R 0P
+	W - 3W 1R 1P
+
+	Lecha:
+	D P
+	W P
+	D W
+	W P
+	W P
+	D P
+	W P 
+	D P
+	W R
+	D W
+	W P
+
+	Meczy: 11
+	D - 2W 0R 3P
+	W - 0W 1R 5P
+
+	Legia:
+	W W
+	D W
+	D P
+	W P
+	D W
+	D R
+	D P
+	W R
+	D W
+	W P
+	D P
+
+	Meczy: 11
+	D - 3W 1R 3P
+	W - 1W 1R 2P
+
+	Wisła:
+	W P
+	D R
+	D R
+	W P
+	D W
+	D R
+	W R
+	D W
+	D W
+	W P
+
+	Meczy: 10
+	D - 3W 3R 0P
+	W - 0W 1R 3P
+
+	Pogoń:
+	W R
+	D P
+	W W
+	D P
+	W W
+	W W
+	D R
+	W P
+	D W
+	D R
+	W P
+
+	Meczy: 11
+	D - 1W 2R 2P
+	W - 3W 1R 2P
+
+	Bruk-Bet:
+	W W
+	D R
+	D P
+	W R
+
+	Meczy: 4
+	D - 0W 1R 1P
+	W - 1W 1R 0P
+
+	Korona:
+	D R
+	W P
+	D P
+	W P
+	D R
+	W P
+	D W
+	W P
+
+	Meczy: 8
+	D - 1W 2R 1P
+	W - 0W 0R 4P
+
+# Meczy łącznie: 64
+	Domowych:		33 13W 10R 10P
+	Wyjazdowych:	31 8W 6R 17P
+
+# Stan -> Jaki nowy stan
+	Wygrana ->	7W 6R 7P
+	Remis -> 	3W 3R 9P
+	Porażka -> 	8W 5R 9P
+	
+# Stan -> Obserwacja
+	Wygrana -> 	13D	8W
+	Remis ->	10D	6W	
+	Porażka ->	10D	17W
+	
+# Pierwsze mecze w grupie mistrzowskiej
+	2013/14 Wyjazd 	Ruch 	Chorzów 	Remis
+	2014/15 Wyjazd 	Pogoń 	Szczecin 	Wygrana
+	2015/16	Wyjazd	Zagłębie Lubin		Wygrana
+	2016/17 Dom 	Termalica Bruk-Bet 	Wygrana (wynik nie jest brany pod uwagę)
