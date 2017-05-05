@@ -17,24 +17,24 @@ namespace markov.core
             getMaxes(T1, n, selector) |> fst
 
         let Calculate(states: int[], probabilities: double[], observations: int[], A: double[][], B: double[][]) =
-            let T1: double[,] = Array2D.create states.Length observations.Length 0.0
-            let T2: int[,] = Array2D.create states.Length observations.Length 0
+            let t1: double[,] = Array2D.create states.Length observations.Length 0.0
+            let t2: int[,] = Array2D.create states.Length observations.Length 0
             let z = Array.zeroCreate observations.Length
             let x = Array.zeroCreate observations.Length
 
             for i in [0..states.Length - 1] do
-                T1.[i, 0] <- probabilities.[i] * B.[i].[observations.[0]]
+                t1.[i, 0] <- probabilities.[i] * B.[i].[observations.[0]]
 
             for i in [1..observations.Length - 1] do
                 for j in [0..states.Length - 1] do
-                    let maxes = getMax(T1, A, i, j)
-                    T1.[j, i] <- B.[j].[observations.[i]] * snd maxes
-                    T2.[j, i] <- fst maxes
-            z.[observations.Length - 1] <- getMaxIndex(T1, observations.Length - 1)
+                    let maxes = getMax(t1, A, i, j)
+                    t1.[j, i] <- B.[j].[observations.[i]] * snd maxes
+                    t2.[j, i] <- fst maxes
+            z.[observations.Length - 1] <- getMaxIndex(t1, observations.Length - 1)
             x.[observations.Length - 1] <- states.[z.[observations.Length - 1]]
             for i = observations.Length - 1 downto 1 do
-                z.[i-1] <- T2.[z.[i], i]
-                x.[i - 1] <- observations.[z.[i-1]]
+                z.[i-1] <- t2.[z.[i], i]
+                x.[i - 1] <- states.[z.[i-1]]
             x
 
         let Predict(states: int[], probabilities: double[], observations: int[], A: double[][], B: double[][], mapping: IDictionary<int, string>) =

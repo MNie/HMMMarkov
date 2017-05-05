@@ -43,7 +43,7 @@ module Lechia =
     
     testList "Viterbi from exercise" [
       testCase "for calculation" <| fun _ ->
-        Expect.sequenceEqual result [|0;0;0;1;0;1;2|] "should equal to sequence 1 1 1 0"
+        Expect.sequenceEqual result [|0;2;0;1;2;1;2|] "should equal to sequence 0 2 0 1 2 1 2"
     ]
 
   [<Tests>]
@@ -54,7 +54,7 @@ module Lechia =
     
     testList "Viterbi from exercise" [
       testCase "for prediction" <| fun _ ->
-        Expect.equal result "WWWDWDL" "should equal to WWWDWDL"
+        Expect.equal result "WLWDLDL" "should equal to WLWDLDL"
     ]
 
   [<Tests>]
@@ -65,7 +65,7 @@ module Lechia =
     
     testList "Viterbi from exercise" [
       testCase "for prediction for 2016" <| fun _ ->
-        Expect.equal result "DWDDDWL" "should equal to DWDDDWL" // in fact was WWLDWWL 4/7
+        Expect.equal result "WDLLWDL" "should equal to WDLLWDL" // in fact was WWLDWWL 4/7
     ]
 
   [<Tests>]
@@ -76,7 +76,7 @@ module Lechia =
     
     testList "Viterbi from exercise" [
       testCase "for prediction for 2015" <| fun _ ->
-        Expect.equal result "WDDWDWL" "should equal to WDDWDWL" // in fact was WDWLLDL 3/7
+        Expect.equal result "DLLDLDL" "should equal to DLLDLDL" // in fact was WDWLLDL 3/7
     ]
 
   [<Tests>]
@@ -87,5 +87,5 @@ module Lechia =
     
     testList "Viterbi from exercise" [
       testCase "for prediction for 2014" <| fun _ ->
-        Expect.equal result "DWDWDWL" "should equal to DWDWDWL" // in fact was WLWWDDW 2/7
+        Expect.equal result "LDLDLDL" "should equal to LDLDLDL" // in fact was WLWWDDW 1/7
     ]
